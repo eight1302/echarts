@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="sales_home.css">
+</head>
+<body>
+<div class="wrapper">
+  <div class="content-wrapper">
+    <section class="col-md-12 content">
+      <section class="col-md-12" style="padding: 0">
+            <div class="col-md-12">
+                <span class="col-md-12 tow">待处理</span>
+                <div class="col-md-12 one" style="padding: 0;">
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="sale_data">0</div>
+                        <span>等待销售审核</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="price_data">0</div>
+                        <span>等待报价</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="confirm_data">0</div>
+                        <span>等待确认</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="delivery_data">0</div>
+                        <span>等待发货</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="pay_data">0</div>
+                        <span>等待付款</span>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 3%;">
+                        <div class="repair_data">0</div>
+                        <span>返修</span>
+                    </div>
+                </div>
+            </div>
+      </section>
+      <section  class="col-md-12" style="margin-top: 10px;padding: 0;">
+            <div class="col-md-12">
+                <span class="col-md-12 tow">业绩</span>
+                <div class="col-md-12 sales_results">
+                    <div class="col-md-12">
+                        <div class="col-md-12" style="padding: 0;">
+                            <div class="col-md-12">
+                                 <span class="col-md-12 sale_person">个人业绩</span>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="sale_mounth_result" style="height: 200px;"></div>
+                                <div class="sale-price" >总价：<span style="color: #00c0ef;">1000</span>RMB</div>
+                            </div>
+                            <div class="col-md-4">
+                               <div id="sale_quarter_result" style="height: 200px;"></div>
+                                <div class="sale-price" >总价：<span style="color: #00a65a;">1000</span>RMB</div>          
+                            </div>
+                            <div class="col-md-4">
+                                  <div id="sale_year_result" style="height: 200px;"></div>
+                                <div class="sale-price" >总价：<span style="color: #f39c12;">1000</span>RMB</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 5%;padding: 0;border-top: 1px solid #eee;">
+                        <div class="col-md-12">
+                            <span class="col-md-12 sale_personll">销售总业绩</span>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="sales_mounth_result" style="height: 200px;"></div>
+                            <div class="sale-price" >总价：<span style="color: #39CCCC;">1000</span>RMB</div>
+                        </div>
+                        <div class="col-md-4">
+                           <div id="sales_quarter_result" style="height: 200px;"></div>
+                            <div class="sale-price" >总价：<span style="color: #605ca8;">1000</span>RMB</div>          
+                        </div>
+                        <div class="col-md-4">
+                            <div id="sales_year_result" style="height: 200px;"></div>
+                            <div class="sale-price" >总价：<span style="color: #D81B60;">1000</span>RMB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </section>
+    </section>
+  </div>
+</div>
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="echarts.min.js"></script>
+<script>
+    var myChart1 = echarts.init(document.getElementById('sale_mounth_result'));
+    var myChart2 = echarts.init(document.getElementById('sale_quarter_result'));
+    var myChart3 = echarts.init(document.getElementById('sale_year_result'));
+    option1 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#00c0ef"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本月业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本月业绩\r\n\r\n'+'10单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#00c0ef'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本月业绩'}
+                ]
+            }
+        ]
+    };
+
+    //本季
+    option2 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#00a65a"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本月业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本季业绩\r\n\r\n'+'25单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#00a65a'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本季业绩'}
+                ]
+            }
+        ]
+    };
+
+    //本年
+    option3 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#f39c12"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本年业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本年业绩\r\n\r\n'+'40单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#f39c12'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本月业绩'}
+                ]
+            }
+        ]
+    };
+
+    myChart1.setOption(option1);
+    myChart2.setOption(option2);
+    myChart3.setOption(option3);
+
+    //销售总业绩
+    var myChart4 = echarts.init(document.getElementById('sales_mounth_result'));
+    var myChart5 = echarts.init(document.getElementById('sales_quarter_result'));
+    var myChart6 = echarts.init(document.getElementById('sales_year_result'));
+    option4 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#39CCCC"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本月业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本月业绩\r\n\r\n'+'50单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#39CCCC'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本月业绩'}
+                ]
+            }
+        ]
+    };
+
+    //本季
+    option5 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#605ca8"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本月业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本季业绩\r\n\r\n'+'105单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#605ca8'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本季业绩'}
+                ]
+            }
+        ]
+    };
+
+    //本年
+    option6 = {
+        tooltip: {
+            show:false,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+         color:["#D81B60"],
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['本年业绩']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['70%', '85%'],
+                avoidLabelOverlap: false,
+                hoveranination:false,
+                silent:true,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'center',
+                        formatter:function (argument) {
+                            var html;
+                            html='本年业绩\r\n\r\n'+'300单';
+                            return html;
+                        },
+                        textStyle:{
+                           fontSize: 15,
+                            color:'#D81B60'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'本月业绩'}
+                ]
+            }
+        ]
+    };
+
+    myChart4.setOption(option4);
+    myChart5.setOption(option5);
+    myChart6.setOption(option6);
+
+    window.onresize = function(){
+        myChart1.resize(); 
+        myChart2.resize(); 
+        myChart3.resize(); 
+        myChart4.resize(); 
+        myChart5.resize(); 
+        myChart6.resize(); 
+    };
+
+    //修改密码
+    $(".up_pass").on('click',function(){
+      $(".sales_updata").show();
+      $(".updated-sales").show();
+
+      //退出弹出成
+      $(".cancel-btn").on('click',function(){
+          $(".sales_updata").hide();
+          $(".updated-sales").hide();
+      });
+    });
+
+    //查看详细信息
+    $(".detail").on('click',function(){
+       $(".sales_updata").show();
+       $(".notices-info").show();
+
+       $(".cancel").on('click',function(){
+           $(".sales_updata").hide();
+            $(".notices-info").hide();
+       });
+    });
+</script>
+</body>
+</html>
